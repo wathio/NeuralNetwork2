@@ -1,34 +1,17 @@
 %% Machine Learning Online Class
-%  Exercise 5 | Regularized Linear Regression and Bias-Variance
-%
-%  Instructions
-%  ------------
-% 
-%  This file contains code that helps you get started on the
-%  exercise. You will need to complete the following functions:
-%
-%     linearRegCostFunction.m
-%     learningCurve.m
-%     validationCurve.m
-%
-%  For this exercise, you will not need to change any code in this file,
-%  or any other files other than those mentioned above.
-%
+
 
 %% Initialization
 clear ; close all; clc
 
 %% =========== Part 1: Loading and Visualizing Data =============
-%  We start the exercise by first loading and visualizing the dataset. 
-%  The following code will load the dataset into your environment and plot
-%  the data.
-%
+
 
 % Load Training Data
 fprintf('Loading and Visualizing Data ...\n')
 
 % Load from ex5data1: 
-% You will have X, y, Xval, yval, Xtest, ytest in your environment
+% load X, y, Xval, yval, Xtest, ytest in your environment
 load ('ex5data1.mat');
 
 % m = Number of examples
@@ -43,9 +26,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== Part 2: Regularized Linear Regression Cost =============
-%  You should now implement the cost function for regularized linear 
-%  regression. 
-%
+
 
 theta = [1 ; 1];
 J = linearRegCostFunction([ones(m, 1) X], y, theta, 1);
@@ -57,9 +38,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== Part 3: Regularized Linear Regression Gradient =============
-%  You should now implement the gradient for regularized linear 
-%  regression.
-%
+
 
 theta = [1 ; 1];
 [J, grad] = linearRegCostFunction([ones(m, 1) X], y, theta, 1);
@@ -73,13 +52,6 @@ pause;
 
 
 %% =========== Part 4: Train Linear Regression =============
-%  Once you have implemented the cost and gradient correctly, the
-%  trainLinearReg function will use your cost function to train 
-%  regularized linear regression.
-% 
-%  Write Up Note: The data is non-linear, so this will not give a great 
-%                 fit.
-%
 
 %  Train linear regression with lambda = 0
 lambda = 0;
@@ -98,11 +70,7 @@ pause;
 
 
 %% =========== Part 5: Learning Curve for Linear Regression =============
-%  Next, you should implement the learningCurve function. 
-%
-%  Write Up Note: Since the model is underfitting the data, we expect to
-%                 see a graph with "high bias" -- slide 8 in ML-advice.pdf 
-%
+
 
 lambda = 0;
 [error_train, error_val] = ...
@@ -126,9 +94,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== Part 6: Feature Mapping for Polynomial Regression =============
-%  One solution to this is to use polynomial regression. You should now
-%  complete polyFeatures to map each example into its powers
-%
+
 
 p = 8;
 
@@ -158,11 +124,7 @@ pause;
 
 
 %% =========== Part 7: Learning Curve for Polynomial Regression =============
-%  Now, you will get to experiment with polynomial regression with multiple
-%  values of lambda. The code below runs polynomial regression with 
-%  lambda = 0. You should try running the code with different values of
-%  lambda to see how the fit and learning curve change.
-%
+
 
 lambda = 0;
 [theta] = trainLinearReg(X_poly, y, lambda);
@@ -196,10 +158,9 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== Part 8: Validation for Selecting Lambda =============
-%  You will now implement validationCurve to test various values of 
-%  lambda on a validation set. You will then use this to select the
-%  "best" lambda value.
-%
+%   implement validationCurve to test various values of 
+%  lambda on a validation set and select the "best" lambda value.
+
 
 [lambda_vec, error_train, error_val] = ...
     validationCurve(X_poly, y, X_poly_val, yval);
